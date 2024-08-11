@@ -1,13 +1,5 @@
-import re
-
-"""
-- Goal is to figure out info about number of cubes
-- subset of cubes retried from teh back
-- config: 12 red, 13 green, 14 blue
-- TODO: shift + h,l to change tabs
-- Change rename symbol keybinding
-"""
 config = (12, 13, 14)
+
 
 def getGameOutcomes(line):
     line = line.split(": ")[1]
