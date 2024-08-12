@@ -1,3 +1,6 @@
+import numpy as np
+
+
 config = (12, 13, 14)
 
 
@@ -30,17 +33,29 @@ def isValidGame(game_res):
     return True
 
 
+def getFestNum(game_res):
+    # Iterate through each game
+    # convert to numpu array
+    game_res = np.array(game_res)
+    # print(game_res)
+    min_red = np.max(game_res[:, 0])
+    min_green = np.max(game_res[:, 1])
+    min_blue = np.max(game_res[:, 2])
+    return min_red * min_green * min_blue
+
+
 if __name__ == "__main__":
     valid_games = []
-    # Iterate line by line
-    # Parse the inputs, create function which returns [(r,g,b), ...], a lise of rgb for each game (line)
+    # iterate line by line
+    # parse the inputs, create function which returns [(r,g,b), ...], a lise of rgb for each game (line)
     counter = 0
     for line in open("data.txt", "r"):
         counter += 1
         game_res = getGameOutcomes(line)
         print(game_res)
-        # Check if that games result is valid, and if so append to valid_games
-        if isValidGame(game_res):
-            valid_games.append(counter)
+        # for each game fewest number of cubes of each color
+        fewest_num = getFestNum(game_res)
+        print("hello", fewest_num)
+        valid_games.append(fewest_num)
 
     print("The final result is: ", sum(valid_games))
