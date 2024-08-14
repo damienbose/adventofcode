@@ -16,7 +16,6 @@ class Main:
     def calculate_score(self, win_nums, my_nums):
         num_cards, _ = my_nums.shape
         cards_count = np.ones(num_cards, dtype=int)
-        # TODO: Vim for rename symbole
 
         for card_idx in range(num_cards):
             print(card_idx)
