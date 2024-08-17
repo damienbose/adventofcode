@@ -1,7 +1,7 @@
 """
 We first parse data as before.
 Then we iterate num by num, and add more cards based on needs.
-so initailly populate with 1 of each and then add more as we move down
+so initially populate with 1 of each and then add more as we move down
 """
 
 import numpy as np
