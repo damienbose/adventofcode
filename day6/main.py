@@ -18,7 +18,7 @@ import math
 
 class Main:
     def __init__(self):
-        self.filePath = "testdata.txt"
+        self.filePath = "main.txt"
         self.parseFile()
         self.run()
         print("Final:")
@@ -27,14 +27,17 @@ class Main:
     def parseFile(self):
         with open(self.filePath) as f:
             self.times = f.readline().strip().split()[1:]
-            self.times = [int(t) for t in self.times]
+            # self.times = [int(t) for t in self.times]
             # print(self.times)
 
             self.distances = f.readline().strip().split()[1:]
-            self.distances = [int(d) for d in self.distances]
+            # self.distances = [int(d) for d in self.distances]
             # print(self.distances)
 
-            self.races = list(zip(self.times, self.distances))
+            self.time = int("".join(self.times))
+            self.distance = int("".join(self.distances))
+
+            self.races = [(self.time, self.distance)]
             print(self.races)
 
     def getNumTimes(self, max_t, max_d):
