@@ -42,7 +42,16 @@ def main():
 
 
 def get_type_num(hand):
-    char_counter = sorted(Counter(hand).values(), reverse=True)
+    map_counter = Counter(hand)
+    t_count = map_counter["J"]
+    # edge case
+    if t_count == 5:
+        return 6  # five of a kind
+
+    del map_counter["J"]
+    char_counter = sorted(map_counter.values(), reverse=True)
+    char_counter[0] += t_count
+
     if char_counter[0] == 5:
         # five of a kind
         return 6
@@ -74,16 +83,16 @@ def get_type_num(hand):
 def hand_score(hand):
     """formula = type * 13^5 + n[0] * 13^4 + n[1]^3 + ..."""
     maps = {
-        "2": 0,
-        "3": 1,
-        "4": 2,
-        "5": 3,
-        "6": 4,
-        "7": 5,
-        "8": 6,
-        "9": 7,
-        "T": 8,
-        "J": 9,
+        "J": 0,
+        "2": 1,
+        "3": 2,
+        "4": 3,
+        "5": 4,
+        "6": 5,
+        "7": 6,
+        "8": 7,
+        "9": 8,
+        "T": 9,
         "Q": 10,
         "K": 11,
         "A": 12,
