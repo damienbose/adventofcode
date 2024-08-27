@@ -1,3 +1,20 @@
+import math
+
+"""
+LLR
+a 223, 246, 270.
+lcm(223, 246, 270) = 14910
+
+"""
+
+
+def lcm_of_array(arr):
+    result = arr[0]
+    for number in arr[1:]:
+        result = math.lcm(result, number)
+    return result
+
+
 def Main():
     data = parse_input("day8/data.txt")
     print(data)
@@ -26,14 +43,24 @@ def parse_input(filename):
 
 
 def calculate(pattern, nav_map):
-    count = 0
-    curr_char = "AAA"
-    while True:
-        curr_char = nav_map[curr_char][pattern[count % len(pattern)]]
-        count += 1
-        if curr_char == "ZZZ":
-            break
-    return count
+    nodes = [k for k in nav_map.keys() if k[-1] == "A"]
+    print(nodes)
+
+    counts = []
+    for node in nodes:
+        count = 0
+        while True:
+            node = nav_map[node][pattern[count % len(pattern)]]
+            count += 1
+            if node[-1] == "Z":
+                counts.append(count)
+                break
+
+    print(counts)
+
+    lcm = lcm_of_array(counts + [len(pattern)])
+
+    return lcm
 
 
 if __name__ == "__main__":
